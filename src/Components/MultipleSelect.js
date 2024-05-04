@@ -26,7 +26,15 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect({ names, lb }) {
+export default function MultipleSelect({
+  names,
+  lb,
+  filteredJobs,
+  setFilteredJobs,
+  jobs,
+  appliedFilters,
+  setAppliedFilters,
+}) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -38,11 +46,17 @@ export default function MultipleSelect({ names, lb }) {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value
     );
+
+    const appFilters = { ...appliedFilters };
+
+    appFilters[lb] = [event.target.value];
+
+    setAppliedFilters(appFilters);
   };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 150 }}>
+      <FormControl sx={{ m: 1, width: 200 }}>
         <InputLabel id="demo-multiple-name-label">{lb}</InputLabel>
         <Select
           labelId="demo-multiple-name-label"

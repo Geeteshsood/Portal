@@ -2,7 +2,13 @@ import React from "react";
 import MultipleSelect from "./MultipleSelect";
 import BasicSelect from "./BasicSelect";
 import BasicTextFields from "./BasicTextField";
-const Filters = () => {
+const Filters = ({
+  filteredJobs,
+  setFilteredJobs,
+  jobs,
+  appliedFilters,
+  setAppliedFilters,
+}) => {
   const names = [
     "Backend",
     "Frontend",
@@ -25,14 +31,14 @@ const Filters = () => {
   ];
 
   const roles = [
-    "Backend",
-    "Frontend",
+    "backend",
+    "frontend",
     "Fullstack",
-    "TOS",
+    "iOS",
     "Flutter",
     "React Native",
-    "Android",
-    "Tech Lead",
+    "android",
+    "tech lead",
     "Dev-Ops",
     "Data Engineer",
     "Data Science",
@@ -55,7 +61,7 @@ const Filters = () => {
     "500+",
   ];
 
-  const remote = ["Remote", "Hybrid", "In-office"];
+  const remote = ["remote", "hybrid", "In-office"];
 
   const experience = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
 
@@ -63,12 +69,58 @@ const Filters = () => {
 
   return (
     <div className="flex p-4 justify-center items-center">
-      <MultipleSelect names={roles} lb="Roles" />
-      <MultipleSelect names={employees} lb="Number of Employees" />
-      <BasicSelect names={experience} lb="Experience" />
-      <MultipleSelect names={remote} lb="Remote" />
-      <BasicSelect names={pay} lb="Minimum Base Pay Salary" />
-      <BasicTextFields />
+      <MultipleSelect
+        names={roles}
+        lb="Roles"
+        filteredJobs={filteredJobs}
+        setFilteredJobs={setFilteredJobs}
+        jobs={jobs}
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+      />
+      <MultipleSelect
+        names={employees}
+        lb="Number of Employees"
+        filteredJobs={filteredJobs}
+        setFilteredJobs={setFilteredJobs}
+        jobs={jobs}
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+      />
+      <BasicSelect
+        names={experience}
+        lb="Experience"
+        filteredJobs={filteredJobs}
+        setFilteredJobs={setFilteredJobs}
+        jobs={jobs}
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+      />
+      <MultipleSelect
+        names={remote}
+        lb="Remote"
+        filteredJobs={filteredJobs}
+        setFilteredJobs={setFilteredJobs}
+        jobs={jobs}
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+      />
+      <BasicSelect
+        names={pay}
+        lb="Minimum Base Pay Salary"
+        filteredJobs={filteredJobs}
+        setFilteredJobs={setFilteredJobs}
+        jobs={jobs}
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+      />
+      <BasicTextFields
+        filteredJobs={filteredJobs}
+        setFilteredJobs={setFilteredJobs}
+        jobs={jobs}
+        appliedFilters={appliedFilters}
+        setAppliedFilters={setAppliedFilters}
+      />
     </div>
   );
 };

@@ -4,7 +4,11 @@ import Filters from "./Filters";
 
 const Body = () => {
   const [jobs, setJobs] = useState([]);
+  const [filteredJobs, setFilteredJobs] = useState([]);
+  const [appliedFilters, setAppliedFilters] = useState({});
 
+  console.log(appliedFilters);
+  
   const fetchData = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -25,23 +29,29 @@ const Body = () => {
       requestOptions
     )
       .then((response) => response.json())
-      .then((result) => setJobs(result.jdList))
-      .catch((error) => console.error(error));
+      .then((result) => {
+        setJobs(result.jdList);
+        setFilteredJobs(result.jdList);
+      });
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  console.log(jobs);
-
   return (
-    <div>
-      <div>
-        <Filters />
+    <div className="h-screen w-screen ">
+      <div className="w-screen">
+        <Filters
+          jobs={jobs}
+          filteredJobs={filteredJobs}
+          setFilteredJobs={setFilteredJobs}
+          appliedFilters={appliedFilters}
+          setAppliedFilters={setAppliedFilters}
+        />
       </div>
-      <div className="h-screen w-screen flex flex-wrap">
-        {jobs.map((job, index) => (
+      <div className="flex flex-wrap">
+        {filteredJobs.map((job, index) => (
           <Job job={job} key={index} />
         ))}
       </div>
