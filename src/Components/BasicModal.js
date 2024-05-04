@@ -22,8 +22,10 @@ export default function BasicModal({ jobDetailsFromCompany }) {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Show More</Button>
+    <div className="-mt-9">
+      <Button onClick={handleOpen} sx={{ textTransform: "none" }}>
+        Show More
+      </Button>
       <Modal
         open={open}
         onClose={handleClose}

@@ -14,34 +14,44 @@ const Job = ({ job }) => {
   } = job;
 
   return (
-    <div className="w-1/4 border-2 border-gray-300 rounded-3xl flex flex-col space-y-1 m-10 p-4 shadow-md">
-      <div className="flex p-4">
-        <img className="h-12 mr-1" src={logoUrl} alt="Company Logo" />
-        <div className="flex flex-col">
-          <p className="text-xl font-bold">{companyName}</p>
-          <p className="text-lg font-semibold">{jobRole}</p>
-          <p className="text-base">{location}</p>
+    <div className="job-card w-full md:w-1/2 lg:w-1/3 xl:w-1/4 mb-8 px-4">
+      <div className="border-2 border-gray-300 rounded-xl p-4 flex flex-col justify-between h-full bg-white shadow-md">
+        <div className="flex items-center mb-4">
+          <img className="h-14 w-12 mr-4" src={logoUrl} alt="Company Logo" />
+          <div>
+            <div className="flex text-lg font-semibold">{companyName}</div>
+            <div className="flex text-base text-gray-600">{jobRole}</div>
+            <div className="flex text-sm text-gray-500">{location}</div>
+          </div>
         </div>
-      </div>
-      <div className="p-4">
-        <p className="text-base font-semibold mb-3">
-          Estimated Salary: ₹{minJdSalary ? minJdSalary : 0} -{maxJdSalary} LPA
-          <span className=""> ✅</span>
-        </p>
-        <p className="font-semibold mb-2">About Company:</p>
-        <JobDescription jobDetailsFromCompany={jobDetailsFromCompany} />
-      </div>
+        <div className="mb-4">
+          <div className="flex items-center mb-2">
+            <div className="text-green-500 mr-0" />
+            <p className="text-base ">
+              Estimated Salary: ₹{minJdSalary ? minJdSalary : 0} - {maxJdSalary}{" "}
+              LPA ✅
+            </p>
+          </div>
+          <div className="flex">
+            <p className="font-semibold mb-2">About Company:</p>
+          </div>
+          <JobDescription jobDetailsFromCompany={jobDetailsFromCompany} />
+        </div>
+        <div className="flex items-center mb-4">
+          <div className="text-blue-500 mr-2" />
+          <p>Minimum Experience: {minExp ? minExp : 0} years</p>
+        </div>
+        <button
+          style={{ backgroundColor: "rgb(85, 239, 196)" }}
+          className=" font-medium py-2 px-4 rounded-full mb-2 text-black"
+        >
+          ⚡ Easy Apply
+        </button>
 
-      <div className="info-container">
-        <h3 style={{ marginTop: "10px" }}>Minimum Experience</h3>
-        <h2>{minExp ? minExp : 0} years</h2>
+        <button className="bg-blue-500 text-white font-medium py-2 px-4 rounded-full hover:bg-blue-600">
+          Unlock referral asks
+        </button>
       </div>
-      <button className="w-full bg-green-400 text-black font-medium py-2 px-4">
-        ⚡ Easy Apply
-      </button>
-      <button className="w-full bg-blue-400 text-black font-medium py-2 px-4">
-        Unlock referral asks
-      </button>
     </div>
   );
 };

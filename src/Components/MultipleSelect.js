@@ -52,9 +52,11 @@ export default function MultipleSelect({
   };
 
   return (
-    <div>
+    <div className="">
       <FormControl sx={{ m: 1, width: 200 }}>
-        <InputLabel id="demo-multiple-name-label">{lb}</InputLabel>
+        <InputLabel id="demo-multiple-name-label" className="text-sm">
+          {lb}
+        </InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"

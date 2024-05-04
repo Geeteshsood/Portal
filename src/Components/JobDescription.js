@@ -9,8 +9,18 @@ const JobDescription = ({ jobDetailsFromCompany }) => {
   };
 
   return (
-    <div className="p-4 border rounded bg-gray-50">
-      <p className="text-base">{jobDetailsFromCompany.slice(0, 180)}</p>
+    <div>
+      <div className="text-left">
+        <span className="text-base text-left">
+          {jobDetailsFromCompany.slice(0, 120)}
+        </span>
+        <span className="text-base text-left opacity-50">
+          {jobDetailsFromCompany.slice(121, 200)}
+        </span>
+        <span className="text-base text-left opacity-20">
+          {jobDetailsFromCompany.slice(201, 300)}
+        </span>
+      </div>
       <BasicModal jobDetailsFromCompany={jobDetailsFromCompany} />
     </div>
   );

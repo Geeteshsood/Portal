@@ -47,7 +47,7 @@ const Filters = ({ appliedFilters, setAppliedFilters }) => {
   const labelBasic = ["Experience", "Minimum Base Pay Salary"];
 
   return (
-    <div className="flex p-4 justify-center items-center">
+    <div className=" flex p-4 justify-center items-center">
       {filterMulti.map((filter, index) => (
         <MultipleSelect
           key={index}

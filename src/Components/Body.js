@@ -57,7 +57,6 @@ const Body = () => {
 
       for (let category in appliedFilters) {
         const arr = appliedFilters[category];
-
         switch (category) {
           case "Remote":
             if (
@@ -74,7 +73,7 @@ const Body = () => {
             }
             break;
           case "Experience":
-            if (+arr[0] > minExp) {
+            if (+arr > minExp) {
               return false;
             }
             break;
@@ -101,7 +100,7 @@ const Body = () => {
 
   return (
     <div className="h-screen w-screen ">
-      <div className="w-screen">
+      <div className="">
         <Filters
           appliedFilters={appliedFilters}
           setAppliedFilters={setAppliedFilters}
