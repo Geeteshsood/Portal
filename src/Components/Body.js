@@ -7,14 +7,12 @@ const Body = () => {
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [appliedFilters, setAppliedFilters] = useState({});
 
-  console.log(appliedFilters);
-
   const fetchData = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const body = JSON.stringify({
-      limit: 10,
+      limit: 100,
       offset: 0,
     });
 
@@ -41,58 +39,57 @@ const Body = () => {
 
   useEffect(() => {
     const filterJobs = jobs.filter((job) => {
-      const {
-        companyName,
-        jobDetailsFromCompany,
-        jobRole,
-        location,
-        logoUrl,
-        maxExp,
-        minJdSalary,
-        maxJdSalary,
-        minExp,
-        salaryCurrencyCode,
-      } = job;
+      const { companyName, jobRole, location, maxJdSalary, minExp } = job;
 
       for (let category in appliedFilters) {
         const arr = appliedFilters[category];
 
-        if (
-          category === "Remote" && location === "remote"
-            ? !arr.includes("remote")
-            : arr.includes("remote")
-        ) {
-          return false;
-        } else if (category === "Roles" && !arr.includes(jobRole)) {
-          return false;
-        } else if (category === "Experience" && +arr[0] > minExp) {
-          return false;
-        } else if (
-          category === "Minimum Base Pay Salary" &&
-          +arr.slice(0, -1) > maxJdSalary
-        ) {
-          return false;
-        } else if (
-          category === "Search Company Name" &&
-          !companyName.toLowerCase().includes(arr.toLowerCase())
-        ) {
-          return false;
+        switch (category) {
+          case "Remote":
+            if (
+              location === "remote"
+                ? !arr.includes("remote")
+                : arr.includes("remote")
+            ) {
+              return false;
+            }
+            break;
+          case "Roles":
+            if (!arr.includes(jobRole)) {
+              return false;
+            }
+            break;
+          case "Experience":
+            if (+arr[0] > minExp) {
+              return false;
+            }
+            break;
+          case "Minimum Base Pay Salary":
+            if (+arr.slice(0, -1) > maxJdSalary) {
+              return false;
+            }
+            break;
+          case "Search Company Name":
+            if (!companyName.toLowerCase().includes(arr.toLowerCase())) {
+              return false;
+            }
+            break;
+          default:
+            break;
         }
       }
 
-      return true; // Include the job if it passes all filter criteria
+      return true;
     });
 
     setFilteredJobs(filterJobs);
-  }, [appliedFilters]);
+  }, [appliedFilters, jobs]);
 
+  console.log(jobs);
   return (
     <div className="h-screen w-screen ">
       <div className="w-screen">
         <Filters
-          jobs={jobs}
-          filteredJobs={filteredJobs}
-          setFilteredJobs={setFilteredJobs}
           appliedFilters={appliedFilters}
           setAppliedFilters={setAppliedFilters}
         />

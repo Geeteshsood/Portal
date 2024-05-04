@@ -29,9 +29,6 @@ function getStyles(name, personName, theme) {
 export default function MultipleSelect({
   names,
   lb,
-  filteredJobs,
-  setFilteredJobs,
-  jobs,
   appliedFilters,
   setAppliedFilters,
 }) {

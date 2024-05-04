@@ -8,8 +8,6 @@ import Select from "@mui/material/Select";
 export default function BasicSelect({
   lb,
   names,
-  filteredJobs,
-  setFilteredJobs,
   appliedFilters,
   setAppliedFilters,
 }) {
