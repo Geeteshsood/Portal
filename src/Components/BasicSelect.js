@@ -19,7 +19,7 @@ export default function BasicSelect({
     setAge(event.target.value);
 
     const appFilters = { ...appliedFilters };
-    appFilters[lb] = [event.target.value];
+    appFilters[lb] = event.target.value;
     setAppliedFilters(appFilters);
   };
 

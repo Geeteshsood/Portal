@@ -8,7 +8,7 @@ const Body = () => {
   const [appliedFilters, setAppliedFilters] = useState({});
 
   console.log(appliedFilters);
-  
+
   const fetchData = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -38,6 +38,53 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    const filterJobs = jobs.filter((job) => {
+      const {
+        companyName,
+        jobDetailsFromCompany,
+        jobRole,
+        location,
+        logoUrl,
+        maxExp,
+        minJdSalary,
+        maxJdSalary,
+        minExp,
+        salaryCurrencyCode,
+      } = job;
+
+      for (let category in appliedFilters) {
+        const arr = appliedFilters[category];
+
+        if (
+          category === "Remote" && location === "remote"
+            ? !arr.includes("remote")
+            : arr.includes("remote")
+        ) {
+          return false;
+        } else if (category === "Roles" && !arr.includes(jobRole)) {
+          return false;
+        } else if (category === "Experience" && +arr[0] > minExp) {
+          return false;
+        } else if (
+          category === "Minimum Base Pay Salary" &&
+          +arr.slice(0, -1) > maxJdSalary
+        ) {
+          return false;
+        } else if (
+          category === "Search Company Name" &&
+          !companyName.toLowerCase().includes(arr.toLowerCase())
+        ) {
+          return false;
+        }
+      }
+
+      return true; // Include the job if it passes all filter criteria
+    });
+
+    setFilteredJobs(filterJobs);
+  }, [appliedFilters]);
 
   return (
     <div className="h-screen w-screen ">

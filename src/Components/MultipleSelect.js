@@ -49,7 +49,7 @@ export default function MultipleSelect({
 
     const appFilters = { ...appliedFilters };
 
-    appFilters[lb] = [event.target.value];
+    appFilters[lb] = event.target.value;
 
     setAppliedFilters(appFilters);
   };

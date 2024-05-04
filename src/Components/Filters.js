@@ -115,6 +115,7 @@ const Filters = ({
         setAppliedFilters={setAppliedFilters}
       />
       <BasicTextFields
+        lb = "Search Company Name"
         filteredJobs={filteredJobs}
         setFilteredJobs={setFilteredJobs}
         jobs={jobs}
