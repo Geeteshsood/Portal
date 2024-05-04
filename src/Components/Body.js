@@ -6,14 +6,15 @@ const Body = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [appliedFilters, setAppliedFilters] = useState({});
+  const [page, setPage] = useState(1);
 
   const fetchData = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
     const body = JSON.stringify({
-      limit: 100,
-      offset: 0,
+      limit: `${10 * page}`,
+      offset: `${10 * (page - 1)}`,
     });
 
     const requestOptions = {
@@ -28,13 +29,26 @@ const Body = () => {
     )
       .then((response) => response.json())
       .then((result) => {
-        setJobs(result.jdList);
-        setFilteredJobs(result.jdList);
+        setJobs([...jobs, ...result.jdList]);
+        setFilteredJobs([...jobs, ...result.jdList]);
       });
   };
 
   useEffect(() => {
     fetchData();
+  }, [page]);
+
+  const handleInfiniteScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setPage((page) => page + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleInfiniteScroll);
   }, []);
 
   useEffect(() => {
@@ -85,7 +99,6 @@ const Body = () => {
     setFilteredJobs(filterJobs);
   }, [appliedFilters, jobs]);
 
-  console.log(jobs);
   return (
     <div className="h-screen w-screen ">
       <div className="w-screen">
