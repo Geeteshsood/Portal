@@ -5,6 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { Fullscreen } from "@mui/icons-material";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -52,11 +53,9 @@ export default function MultipleSelect({
   };
 
   return (
-    <div className="">
-      <FormControl sx={{ m: 1, width: 200 }}>
-        <InputLabel id="demo-multiple-name-label" className="text-sm">
-          {lb}
-        </InputLabel>
+    <div className="w-1/6 p-1">
+      <FormControl sx={{ width: "100%" }}>
+        <InputLabel id="demo-multiple-name-label">{lb}</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"

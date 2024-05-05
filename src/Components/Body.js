@@ -39,6 +39,7 @@ const Body = () => {
   }, [page]);
 
   const handleInfiniteScroll = () => {
+    console.log("hi");
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
       document.documentElement.scrollHeight
@@ -47,8 +48,25 @@ const Body = () => {
     }
   };
 
+  const throttle = (handleInfiniteScroll, delay) => {
+    let flag = true;
+
+    return function () {
+      if (flag) {
+        handleInfiniteScroll();
+
+        flag = false;
+        setTimeout(function () {
+          flag = true;
+        }, delay);
+      }
+    };
+  };
+
+  const myFun = throttle(handleInfiniteScroll, 500);
+
   useEffect(() => {
-    window.addEventListener("scroll", handleInfiniteScroll);
+    window.addEventListener("scroll", myFun);
   }, []);
 
   useEffect(() => {

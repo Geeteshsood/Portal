@@ -14,20 +14,22 @@ export default function BasicTextFields({
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        "& > :not(style)": { m: 1, width: "200px" },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <TextField
-        id="outlined-basic"
-        label={lb}
-        variant="outlined"
-        onChange={(e) => handleChange(e)}
-      />
-    </Box>
+    <div className="w-1/6 p-1">
+      <Box
+        component="form"
+        sx={{
+          "& > :not(style)": { width: "100%" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          id="outlined-basic"
+          label={lb}
+          variant="outlined"
+          onChange={(e) => handleChange(e)}
+        />
+      </Box>
+    </div>
   );
 }

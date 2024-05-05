@@ -22,23 +22,25 @@ export default function BasicSelect({
   };
 
   return (
-    <Box sx={{ m: 1, minWidth: 200 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">{lb}</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          label="Age"
-          onChange={handleChange}
-        >
-          {names.map((name) => (
-            <MenuItem key={name} value={name}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+    <div className="w-1/6 p-1">
+      <Box sx={{ minWidth: "100%" }}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">{lb}</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age}
+            label="Age"
+            onChange={handleChange}
+          >
+            {names.map((name) => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
+    </div>
   );
 }
